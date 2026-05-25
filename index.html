@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monétisation Instagram Afrique - Commandez votre pack</title>
+    <style>
+        :root {
+            --insta-grad: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --bg-dark: #0b0f19;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Effets de lumière en arrière-plan */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--insta-grad);
+            filter: blur(150px);
+            opacity: 0.2;
+            top: -50px;
+            left: -50px;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #25D366;
+            filter: blur(150px);
+            opacity: 0.1;
+            bottom: -50px;
+            right: -50px;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 550px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--insta-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--card-border);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge.price {
+            color: #ffbe1a;
+            border-color: rgba(255, 190, 26, 0.3);
+            background: rgba(255, 190, 26, 0.05);
+        }
+
+        .badge.time {
+            color: #6366f1;
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: var(--text-main);
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #e6683c;
+            box-shadow: 0 0 0 3px rgba(230, 104, 60, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--insta-grad);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(220, 39, 67, 0.3);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover { opacity: 0.95; transform: translateY(-1px); }
+        .submit-btn:active { transform: translateY(1px); }
+
+        /* --- CHATBOT ACCENT --- */
+        .chat-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            background: var(--insta-grad);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .chat-button:hover { transform: scale(1.08); }
+        .chat-button svg { width: 28px; height: 28px; fill: white; }
+        
+        .chat-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: red;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--bg-dark);
+        }
+
+        .chat-window {
+            width: 360px;
+            height: 460px;
+            background: #151b2c;
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            margin-bottom: 15px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-header {
+            background: var(--insta-grad);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-header-avatar {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .chat-header-info h4 { font-size: 14px; font-weight: 600; }
+        .chat-header-info p { font-size: 11px; color: rgba(255,255,255,0.8); }
+
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #0e1322;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 13.5px;
+            line-height: 1.4;
+        }
+
+        .msg.bot {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-main);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .msg.user {
+            background: var(--insta-grad);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-options {
+            padding: 10px 16px;
+            background: #0e1322;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-top: 1px solid rgba(255,255,255,0.02);
+        }
+
+        .opt-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: #e6683c;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .opt-btn:hover {
+            background: rgba(230, 104, 60, 0.1);
+            border-color: rgba(230, 104, 60, 0.3);
+        }
+
+        .chat-footer {
+            padding: 12px 16px;
+            background: #151b2c;
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-footer input {
+            flex: 1;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: white;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .chat-footer button {
+            background: var(--whatsapp-green);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-footer button svg { width: 18px; height: 18px; fill: white; }
+
+        @media(max-width: 480px) {
+            .container { padding: 25px 20px; }
+            .chat-window { width: calc(100vw - 40px); right: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Monétisation Insta</h1>
+            <p>Renseignez vos informations pour commander votre pack de configuration.</p>
+            
+            <div class="badge-container">
+                <div class="badge price">💰 Tarifs : 3 000 FCFA</div>
+                <div class="badge time">⚡ Délai : 24 Heures</div>
+            </div>
+        </div>
+
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="lastname">Nom</label>
+                <input type="text" id="lastname" placeholder="Votre nom de famille" required>
+            </div>
+
+            <div class="form-group">
+                <label for="firstname">Prénom</label>
+                <input type="text" id="firstname" placeholder="Votre prénom" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Adresse Email</label>
+                <input type="email" id="email" placeholder="exemple@mail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="instaName">Nom de votre compte Instagram</label>
+                <input type="text" id="instaName" placeholder="@nom_de_compte" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description de votre projet / Thématique</label>
+                <textarea id="description" placeholder="Expliquez brièvement vos besoins..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Envoyer la commande via WhatsApp
+            </button>
+        </form>
+    </div>
+
+    <div class="chat-widget">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-avatar">🤖</div>
+                <div class="chat-header-info">
+                    <h4>Assistant Virtuel</h4>
+                    <p>En ligne • Répond instantanément</p>
+                </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="msg bot">Bonjour ! 👋 Prêt à lancer votre monétisation Instagram en Afrique ? 🚀</div>
+                <div class="msg bot">Tarif : **3 000 FCFA** | Livraison : **24 Heures**. Que souhaitez-vous savoir ?</div>
+            </div>
+            <div class="chat-options" id="chatOptions">
+                <button class="opt-btn" onclick="botReply('Quelles sont les méthodes de paiement ?', 'Nous acceptons les paiements mobiles (MTN, Moov, Wave, etc.) lors de la validation finale sur WhatsApp !')">💳 Paiements ?</button>
+                <button class="opt-btn" onclick="botReply('Que contient le pack ?', 'Le pack comprend l\'activation des outils professionnels, des conseils pour contourner les restrictions géographiques et nos guides de viralité.')">📦 Contenu ?</button>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="chatInput" placeholder="Posez une question..." onkeypress="handleChatKey(event)">
+                <button onclick="sendUserMessage()">
+                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="chat-button" onclick="toggleChat()">
+            <div class="chat-badge" id="chatBadge"></div>
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+        </div>
+    </div>
+
+    <script>
+        const WHATSAPP_NUMBER = "2290159830728";
+
+        // Soumission du formulaire
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const lastname = document.getElementById('lastname').value.trim();
+            const firstname = document.getElementById('firstname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const instaName = document.getElementById('instaName').value.trim();
+            const description = document.getElementById('description').value.trim();
+
+            const message = `🛍️ *NOUVELLE COMMANDE MONÉTISATION*\\n\\n` +
+                            `👤 *Nom :* ${lastname}\\n` +
+                            `✍️ *Prénom :* ${firstname}\\n` +
+                            `📧 *Email :* ${email}\\n` +
+                            `📸 *Instagram :* ${instaName}\\n` +
+                            `📝 *Description :* ${description}\\n\\n` +
+                            `💰 *Montant :* 3 000 FCFA\\n` +
+                            `⚡ *Délai :* 24 Heures`;
+
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        // Fonctions du Chatbot
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            document.getElementById('chatBadge').style.display = 'none';
+            chatWindow.style.display = (chatWindow.style.display === 'flex') ? 'none' : 'flex';
+            scrollToBottom();
+        }
+
+        function scrollToBottom() {
+            const container = document.getElementById('chatMessages');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function botReply(userQ, botA) {
+            appendMessage(userQ, 'user');
+            setTimeout(() => { appendMessage(botA, 'bot'); }, 500);
+        }
+
+        function sendUserMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if(!text) return;
+
+            appendMessage(text, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                appendMessage(`Pour votre question ("${text}"), je vous mets en relation directe avec notre conseiller personnel. Cliquez ci-dessous :`, 'bot');
+                setTimeout(() => {
+                    const container = document.getElementById('chatMessages');
+                    const linkDiv = document.createElement('div');
+                    linkDiv.className = 'msg bot';
+                    linkDiv.style.background = 'rgba(37, 211, 102, 0.15)';
+                    linkDiv.innerHTML = `<a href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Question chatbot : ' + text)}" target="_blank" style="color: #25D366; text-decoration: none; font-weight: 600;">💬 Ouvrir WhatsApp</a>`;
+                    container.appendChild(linkDiv);
+                    scrollToBottom();
+                }, 300);
+            }, 700);
+        }
+
+        function handleChatKey(e) { if(e.key === 'Enter') sendUserMessage(); }
+
+        function appendMessage(text, sender) {
+            const container = document.getElementById('chatMessages');
+            const msg = document.createElement('div');
+            msg.className = `msg ${sender}`;
+            msg.innerText = text;
+            container.appendChild(msg);
+            scrollToBottom();
+        }
+    </script>
+</body>
+</html>
